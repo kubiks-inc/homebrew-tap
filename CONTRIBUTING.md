@@ -72,6 +72,6 @@ If you encounter issues with the Homebrew formula:
 
 For questions or support:
 - 📧 Email: support@kubiks.ai
-- 🐛 [Report issues](https://github.com/kubiks-inc/homebrew-tap/issues)
+- 🐛 [Report issues](https://github.com/kubiks-inc/tap/issues)
 
 Thank you for contributing! 🎉

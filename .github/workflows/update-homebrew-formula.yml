@@ -25,16 +25,16 @@ jobs:
           SHA256=$(curl -sL "${URL}" | sha256sum | cut -d' ' -f1)
           echo "sha256=${SHA256}" >> $GITHUB_OUTPUT
 
-      - name: Checkout homebrew-tap repository
+      - name: Checkout tap repository
         uses: actions/checkout@v4
         with:
-          repository: kubiks-inc/homebrew-tap
+          repository: kubiks-inc/tap
           token: ${{ secrets.HOMEBREW_TOKEN }}
-          path: homebrew-tap
+          path: tap
 
       - name: Update formula
         run: |
-          cd homebrew-tap
+          cd tap
           
           # Update the formula file
           sed -i 's|url ".*"|url "https://github.com/kubiks-inc/kubiks-cli/archive/refs/tags/${{ steps.version.outputs.tag }}.tar.gz"|' Formula/kubiks.rb
@@ -51,7 +51,7 @@ jobs:
       - name: Create PR for formula update
         uses: peter-evans/create-pull-request@v5
         with:
-          path: homebrew-tap
+          path: tap
           token: ${{ secrets.HOMEBREW_TOKEN }}
           commit-message: "Update kubiks formula to version ${{ steps.version.outputs.version }}"
           title: "Update kubiks formula to version ${{ steps.version.outputs.version }}"
