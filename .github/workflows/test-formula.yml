@@ -1,0 +1,54 @@
+name: Test Formula
+
+on:
+  pull_request:
+    paths:
+      - 'Formula/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'Formula/**'
+
+jobs:
+  test:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Cache Homebrew Bundler RubyGems
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.set-up-homebrew.outputs.gems-path }}
+          key: ${{ runner.os }}-rubygems-${{ steps.set-up-homebrew.outputs.gems-hash }}
+          restore-keys: ${{ runner.os }}-rubygems-
+
+      - name: Install Homebrew Bundler RubyGems
+        run: brew install-bundler-gems
+
+      - name: Validate formula syntax
+        run: |
+          brew audit --strict --formula ./Formula/kubiks.rb
+
+      - name: Test formula (if version exists)
+        run: |
+          # Check if the version in the formula actually exists
+          VERSION=$(grep 'version "' Formula/kubiks.rb | sed 's/.*version "\(.*\)".*/\1/')
+          URL=$(grep 'url "' Formula/kubiks.rb | sed 's/.*url "\(.*\)".*/\1/')
+          
+          # Test if URL is accessible
+          if curl --output /dev/null --silent --head --fail "$URL"; then
+            echo "✅ URL is accessible, testing formula installation"
+            brew install --build-from-source ./Formula/kubiks.rb
+            brew test kubiks
+            brew uninstall kubiks
+          else
+            echo "⚠️  URL not accessible yet (likely a template), skipping installation test"
+            echo "This is expected for the initial formula before the first release"
+          fi
