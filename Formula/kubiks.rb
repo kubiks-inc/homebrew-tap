@@ -1,10 +1,9 @@
 class Kubiks < Formula
-  desc "AI-powered debugging for Next.js applications with OpenTelemetry and MCP integration"
+  desc "AI-powered debugging for Next.js with OpenTelemetry and MCP integration"
   homepage "https://github.com/kubiks-inc/kubiks-cli"
   url "https://github.com/kubiks-inc/kubiks-cli/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "" # This will be automatically updated by the release workflow
+  sha256 "0000000000000000000000000000000000000000000000000000000000000000" # Updated by workflow
   license "Apache-2.0"
-  version "1.0.0"
 
   depends_on "go" => :build
 
