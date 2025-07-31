@@ -2,7 +2,7 @@ class Kubiks < Formula
   desc "AI-powered debugging for Next.js with OpenTelemetry and MCP integration"
   homepage "https://github.com/kubiks-inc/kubiks-cli"
   url "https://github.com/kubiks-inc/kubiks-cli/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000" # Updated by workflow
+  sha256 "dac96061f9e6e7454855eb2ebdabae281f74a5e55057e0cc3f86926d7458689f" # Updated by workflow
   license "Apache-2.0"
 
   depends_on "go" => :build
