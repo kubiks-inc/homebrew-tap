@@ -28,9 +28,13 @@ jobs:
       - name: Install Homebrew Bundler RubyGems
         run: brew install-bundler-gems
 
-      - name: Validate formula syntax
+      - name: Add tap and validate formula
         run: |
-          brew audit --strict --formula ./Formula/kubiks.rb
+          # Add this repository as a tap
+          brew tap kubiks-inc/tap "$(pwd)"
+          
+          # Now audit the formula by name
+          brew audit --strict --formula kubiks-inc/tap/kubiks
 
       - name: Test formula (if version exists)
         run: |
@@ -41,8 +45,8 @@ jobs:
           # Test if URL is accessible
           if curl --output /dev/null --silent --head --fail "$URL"; then
             echo "✅ URL is accessible, testing formula installation"
-            brew install --build-from-source ./Formula/kubiks.rb
-            brew test kubiks
+            brew install --build-from-source kubiks-inc/tap/kubiks
+            brew test kubiks-inc/tap/kubiks
             brew uninstall kubiks
           else
             echo "⚠️  URL not accessible yet (likely a template), skipping installation test"
