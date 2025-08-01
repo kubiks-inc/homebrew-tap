@@ -1,7 +1,7 @@
 class Kubiks < Formula
   desc "AI-powered debugging for Next.js with OpenTelemetry and MCP integration"
   homepage "https://github.com/kubiks-inc/kubiks-cli"
-  version "1.0.9"
+  version "1.0.13"
   license "Apache-2.0"
 
   url "https://github.com/kubiks-inc/kubiks-cli/releases/download/v1.0.13/kubiks-v1.0.13-darwin-amd64.tar.gz"
