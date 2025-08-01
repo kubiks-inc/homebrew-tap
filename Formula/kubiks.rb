@@ -1,11 +1,11 @@
 class Kubiks < Formula
   desc "AI-powered debugging for Next.js with OpenTelemetry and MCP integration"
   homepage "https://github.com/kubiks-inc/kubiks-cli"
-  version "1.0.15"
+  version "1.0.18"
   license "Apache-2.0"
 
-  url "https://github.com/kubiks-inc/kubiks-cli/releases/download/v1.0.15/kubiks-v1.0.15-darwin-amd64.tar.gz"
-  sha256 "a7052678793bfaae63e2d4a8fa46239d6e5530be708016b904639a5ae565ebb8"
+  url "https://github.com/kubiks-inc/kubiks-cli/releases/download/v1.0.18/kubiks-v1.0.18-darwin-amd64.tar.gz"
+  sha256 "81f0c2f367f0fb3266f78bf0b435506a5159d48c11206d49716385e15cd73f70"
 
   def install
     bin.install "kubiks"
