@@ -5,7 +5,7 @@ class Kubiks < Formula
   license "Apache-2.0"
 
   url "https://github.com/kubiks-inc/kubiks-cli/releases/download/v2.0.1/kubiks-v2.0.1-darwin-amd64.tar.gz"
-  sha256 "8d19b5ae83818767bc790305f645a40a4215c1d16dd2b1eed7e3b937136408e6"
+  sha256 "8ef8ad0bc06e68e00605b27c09b341e79abbab1edc99892f2828f9904a66402b"
 
   def install
     bin.install "kubiks"
